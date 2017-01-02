@@ -1,0 +1,2 @@
+# GIFtastic
+Giphy API use
