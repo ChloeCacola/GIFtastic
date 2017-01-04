@@ -23,11 +23,12 @@ function displayVerbGifs() {
             var verbGif = $("<img class='gif'>");
             //building source from results pulled from giphy
            	$(verbGif).attr({
-           		src: still,
-           		"data-behavior": "still"})
+           		src: results[i].images.fixed_height_still.url,
+           		"data-behavior": "still",
+              "data-animated": results[i].images.fixed_height.url,
+              "data-still": results[i].images.fixed_height_still.url})
 
-            animated = results[i].images.fixed_height.url;
-            still = results[i].images.fixed_height_still.url;
+
 
             //add gif and paragraph before other gifs (image is first because it is later in the code)
             gifDiv.prepend(p);
@@ -42,11 +43,11 @@ $(document).on("click", ".gif", function() {
   var state = $(this).attr("data-behavior");
 
   if (state === "still") {
-    $(this).attr("src", animated);
+    $(this).attr("src", $(this).attr("data-animated"));
     state = $(this).attr("data-behavior", "animated");
             		
   } else if (state === "animated") {
-    $(this).attr("src", still);
+    $(this).attr("src", $(this).attr("data-still"));
     state = $(this).attr("data-behavior", "still")
     } else {};
 });
