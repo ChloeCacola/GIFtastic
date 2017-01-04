@@ -1,6 +1,10 @@
 //verbs to be turned into buttons for GIPHY API
 var topics = ["running", "dancing", "laughing", "singing", "yawning"];
 
+var still
+var animated
+var results
+
 //Dumps JSON content for each button into verb-gif div
 function displayVerbGifs() {
 	temp = $(this).data("name");
@@ -9,16 +13,22 @@ function displayVerbGifs() {
 
 	$.ajax({ url: queryURL, method: "GET" }).done(function(response) {
           //(below) we can use results as a shortcut to reference response.data
-          var results = response.data;
+          results = response.data;
           //loop through results; response.data is an array
           //for each one, we create a div and the rating for the current object; we also create a paragraph and modify the text to put in the rating w/rating variable
           for (var i = 0; i < results.length; i++) {
             var gifDiv = $("<div class='item'>");
             var rating = results[i].rating;
             var p = $("<p>").text("Rating: " + rating);
-            var verbGif = $("<img>");
+            var verbGif = $("<img class='gif'>");
             //building source from results pulled from giphy
-            verbGif.attr("src", results[i].images.fixed_height.url);
+           	$(verbGif).attr({
+           		src: still,
+           		"data-behavior": "still"})
+
+            animated = results[i].images.fixed_height.url;
+            still = results[i].images.fixed_height_still.url;
+
             //add gif and paragraph before other gifs (image is first because it is later in the code)
             gifDiv.prepend(p);
             gifDiv.prepend(verbGif);
@@ -27,6 +37,19 @@ function displayVerbGifs() {
 	});
 }
 
+$(document).on("click", ".gif", function() {
+
+  var state = $(this).attr("data-behavior");
+
+  if (state === "still") {
+    $(this).attr("src", animated);
+    state = $(this).attr("data-behavior", "animated");
+            		
+  } else if (state === "animated") {
+    $(this).attr("src", still);
+    state = $(this).attr("data-behavior", "still")
+    } else {};
+});
 
 //create buttons in HTML
 function renderButtons() {
