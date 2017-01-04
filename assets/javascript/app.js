@@ -14,12 +14,16 @@ function displayVerbGifs() {
 	$.ajax({ url: queryURL, method: "GET" }).done(function(response) {
           //(below) we can use results as a shortcut to reference response.data
           results = response.data;
+
+          //empty the gifs-view div so that when button is clicked, the new gifs appear/append
+           $("#gifs-view").empty();
+           
           //loop through results; response.data is an array
           //for each one, we create a div and the rating for the current object; we also create a paragraph and modify the text to put in the rating w/rating variable
           for (var i = 0; i < results.length; i++) {
             var gifDiv = $("<div class='item'>");
             var rating = results[i].rating;
-            var p = $("<p>").text("Rating: " + rating);
+            var p = $("<p class='rating'>").text("RATED: " + rating);
             var verbGif = $("<img class='gif'>");
             //building source from results pulled from giphy
            	$(verbGif).attr({
@@ -31,9 +35,9 @@ function displayVerbGifs() {
 
 
             //add gif and paragraph before other gifs (image is first because it is later in the code)
-            gifDiv.prepend(p);
-            gifDiv.prepend(verbGif);
-            $("#gifs-view").prepend(gifDiv);
+            gifDiv.append(p);
+            gifDiv.append(verbGif);
+            $("#gifs-view").append(gifDiv);
         }
 	});
 }
@@ -70,7 +74,7 @@ function renderButtons() {
 		a.attr("data-name", topics[i]);
 					// Providing the initial button text
 		a.text(topics[i]);
-					// Adding the button to the buttons-view div
+					// Adding the button to the buttons-list div
 		$("#buttons-list").append(a);
 	}
 }
@@ -85,7 +89,7 @@ function renderButtons() {
 				// The movie from the textbox is then added to our array
 				topics.push(verb);
 
-				// Calling renderButtons which handles the processing of our movie array
+				// Calling renderButtons which handles the processing of verb array
 				renderButtons();
 
 			});
