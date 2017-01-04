@@ -4,16 +4,21 @@ body {
 
 #center {
 	margin: auto;
-	width: 50%;
+	width: 15%;
+
 }
 
 header {
-	background-image: url(http://i.giphy.com/XFdLX82HlmwjC.gif);
-
+	background-image: url(../images/explosion.gif);
+	background-size: 200px 200px;
+	background-repeat: no-repeat;
+	height: 210px;
+	width: 210px;
 }
 
 h1 {
 	font-family: arial;
+	padding-top: 100px;
 }
 
 button {
@@ -54,4 +59,9 @@ form {
 .item {
 	float: left;
 	margin: 10px;
+}
+
+#gifs-view {
+	margin-left: 10%;
+	margin-right: 5%;
 }
