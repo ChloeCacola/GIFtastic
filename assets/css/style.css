@@ -2,6 +2,11 @@ body {
 	text-align: center;
 }
 
+#center {
+	margin: auto;
+	width: 50%;
+}
+
 header {
 	background-image: url(http://i.giphy.com/XFdLX82HlmwjC.gif);
 

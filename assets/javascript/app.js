@@ -9,7 +9,7 @@ var results
 function displayVerbGifs() {
 	temp = $(this).data("name");
 	
-	var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + temp + "&api_key=dc6zaTOxFJmzC&limit=10";
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + temp + "&api_key=dc6zaTOxFJmzC&limit=10";
 
 	$.ajax({ url: queryURL, method: "GET" }).done(function(response) {
           //(below) we can use results as a shortcut to reference response.data
@@ -17,7 +17,7 @@ function displayVerbGifs() {
 
           //empty the gifs-view div so that when button is clicked, the new gifs appear/append
            $("#gifs-view").empty();
-           
+
           //loop through results; response.data is an array
           //for each one, we create a div and the rating for the current object; we also create a paragraph and modify the text to put in the rating w/rating variable
           for (var i = 0; i < results.length; i++) {
