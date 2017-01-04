@@ -2,6 +2,11 @@ body {
 	text-align: center;
 }
 
+header {
+	background-image: url(http://i.giphy.com/XFdLX82HlmwjC.gif);
+
+}
+
 h1 {
 	font-family: arial;
 }
@@ -35,4 +40,13 @@ form {
 	font-size: 10px;
 	letter-spacing: 1px;
 	word-spacing: 2px;
+	margin: 0px;
+	padding: 0px;
+	font-weight: bolder;
+}
+
+
+.item {
+	float: left;
+	margin: 10px;
 }
