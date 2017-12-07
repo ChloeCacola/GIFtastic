@@ -5,6 +5,28 @@ var still
 var animated
 var results
 
+var modal = document.getElementById('myModal');
+var help = document.getElementById("help");
+var span = document.getElementsByClassName("close")[0];
+
+// open modal on click
+help.onclick = function() {
+    modal.style.display = "block";
+}
+
+// close modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// close modal
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
 //Dumps JSON content for each button into verb-gif div
 function displayVerbGifs() {
 	temp = $(this).data("name");
@@ -100,3 +122,5 @@ $(document).on("click", ".verb", displayVerbGifs);
 
 //calling renderButtons to display initial buttons
 renderButtons();
+
+
