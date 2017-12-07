@@ -111,6 +111,8 @@ function renderButtons() {
 				// The movie from the textbox is then added to our array
 				topics.push(verb);
 
+				verb = $("#verb-input").val('');
+
 				// Calling renderButtons which handles the processing of verb array
 				renderButtons();
 
